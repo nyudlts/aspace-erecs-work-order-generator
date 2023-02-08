@@ -103,7 +103,6 @@ func main() {
 				panic(err.Error())
 			}
 
-			fmt.Println(ao.Instances[0].SubContainer)
 			msg := fmt.Sprintf("%s\t%s\t%s\t\t%s\t\t%s\t%s\n", resID, ao.RefID, ao.URI, do.DigitalObjectID, ao.Title, ao.ComponentId)
 			writer.WriteString(msg)
 			writer.Flush()
