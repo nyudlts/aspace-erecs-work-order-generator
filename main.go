@@ -89,7 +89,7 @@ func main() {
 			panic(err.Error())
 		}
 
-		erPtn := regexp.MustCompile("^[FA|TW|UA]\\w*\\d{1,4}\\wER\\w\\d{1,4}")
+		erPtn := regexp.MustCompile("^[FA|TW|UA]\\w*\\d{1,4}\\wER\\w\\d{1,4}$")
 		//check that the digital object id is an electronic record component
 		if erPtn.MatchString(do.DigitalObjectID) {
 			//get the parent AO url
