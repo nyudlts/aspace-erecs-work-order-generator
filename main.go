@@ -18,6 +18,7 @@ var (
 	env        string
 	timeout    int
 	err        error
+	cuid       bool
 )
 
 var repoMap = map[int]string{2: "tamwag", 3: "fales", 6: "archives"}
@@ -28,6 +29,7 @@ func init() {
 	flag.IntVar(&timeout, "timeout", 20, "")
 	flag.StringVar(&config, "config", "", "")
 	flag.StringVar(&env, "env", "", "")
+	flag.BoolVar(&cuid, "cuid", false, "")
 }
 
 func main() {
@@ -103,7 +105,14 @@ func main() {
 				panic(err.Error())
 			}
 
-			msg := fmt.Sprintf("%s\t%s\t%s\t\t%s\t\t%s\t%s\n", resID, ao.RefID, ao.URI, do.DigitalObjectID, ao.Title, ao.ComponentId)
+			var componentID string
+			if cuid {
+				componentID = ao.ComponentId
+			} else {
+				componentID = ""
+			}
+
+			msg := fmt.Sprintf("%s\t%s\t%s\t\t%s\t\t%s\t%s\n", resID, ao.RefID, ao.URI, do.DigitalObjectID, ao.Title, componentID)
 			writer.WriteString(msg)
 			writer.Flush()
 		}
