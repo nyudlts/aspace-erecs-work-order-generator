@@ -32,7 +32,6 @@ func init() {
 
 func main() {
 	flag.Parse()
-	fmt.Println(os.Args)
 	if repoID == 0 || resourceID == 0 {
 		panic(fmt.Errorf("Either repo-id or resource-id not set"))
 	}
@@ -103,6 +102,8 @@ func main() {
 			if err != nil {
 				panic(err.Error())
 			}
+
+			fmt.Println(ao.Instances[0].SubContainer)
 			msg := fmt.Sprintf("%s\t%s\t%s\t\t%s\t\t%s\t%s\n", resID, ao.RefID, ao.URI, do.DigitalObjectID, ao.Title, ao.ComponentId)
 			writer.WriteString(msg)
 			writer.Flush()
